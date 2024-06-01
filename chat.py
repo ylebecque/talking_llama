@@ -24,11 +24,6 @@ import ollama
 # Pathlib
 from pathlib import Path
 
-# Packages spécifiques au déploiement de l'appli sur Streamlit Cloud
-__import__("pysqlite3")
-import sys
-
-sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 
 # Configuration de la page
 st.set_page_config(
@@ -143,7 +138,7 @@ if entree := st.chat_input("Message LittleG"):
         [
             (
                 "system",
-                f"{instructions} Utilise le contexte suivant pour repondre à la question. Contexte : {context} Question:",
+                f"### Instruction ### {instructions} Utilise le contexte suivant pour repondre à la question. ### Contexte ### {context} ### Question ###",
             ),
             MessagesPlaceholder(variable_name="messages"),
         ]
